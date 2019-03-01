@@ -16,12 +16,40 @@ function eventListeners() { //Listen all event
 function addTodo(e) {
     const newTodo = todoInput.value.trim();
 
-    addTodoToUI(newTodo);
-    //console.log(newTodo);
+    if (newTodo === ""){
+        /*                     
+            <div class="alert alert-danger" role="alert">
+                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                </div>
+        */
+        showAlert("danger", "Lütfen bir Todo giriniz..");
+    }
+    else {
+        addTodoToUI(newTodo);
+        showAlert("success", "Todo başarıyla eklendi!");
+    }
+
     
 
     e.preventDefault();
 }
+
+function showAlert(type, message){
+    const alert = document.createElement("div");
+
+    alert.className = `alert alert-${type}`;
+
+    alert.textContent = message;
+
+    //console.log(alert);
+    
+    firstCardBody.appendChild(alert);
+
+    setTimeout(function(){
+        alert.remove();
+    },1000);
+}
+
 function addTodoToUI(newTodo){ // add string value to to UI as a list item
 
 
