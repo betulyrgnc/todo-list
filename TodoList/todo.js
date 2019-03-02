@@ -13,6 +13,24 @@ function eventListeners() { //Listen all event
     form.addEventListener("submit",addTodo);
     document.addEventListener("DOMContentLoaded",loadAllTodosTodosToUI);
     secondCardBody.addEventListener("click",deleteTodo);
+    filter.addEventListener("keyup",filterTodos);
+}
+function filterTodos(e){
+    const filterValue = e.target.value.toLowerCase();
+    const listItems = document.querySelectorAll(".list-group-item");
+
+    listItems.forEach(function(listItem){
+        const text = listItem.textContent.toLowerCase();
+        if(text.indexOf(filterValue) === -1){
+            
+            listItem.setAttribute("style","display : none !important");
+        }
+        else {
+            listItem.setAttribute("style","display : block");
+        }
+    });
+
+
 }
 function deleteTodo(e){
     //console.log (e.target); 
