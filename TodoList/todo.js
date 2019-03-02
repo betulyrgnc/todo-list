@@ -14,7 +14,17 @@ function eventListeners() { //Listen all event
     document.addEventListener("DOMContentLoaded",loadAllTodosTodosToUI);
     secondCardBody.addEventListener("click",deleteTodo);
     filter.addEventListener("keyup",filterTodos);
+    clearButton.addEventListener("click",clearAllTodos);
 }
+function clearAllTodos(e){
+    if(confirm("Tümünü silmek istediğinize emin misiniz ?")) {
+        //todoList.innerHTML = "";   //Not Fast
+        while(todoList.firstElementChild != null) {
+            todoList.removeChild(todoList.firstElementChild);
+        }
+        localStorage.removeItem("todos");
+    }
+} 
 function filterTodos(e){
     const filterValue = e.target.value.toLowerCase();
     const listItems = document.querySelectorAll(".list-group-item");
