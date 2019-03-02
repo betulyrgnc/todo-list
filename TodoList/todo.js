@@ -12,6 +12,14 @@ eventListeners();
 function eventListeners() { //Listen all event
     form.addEventListener("submit",addTodo);
     document.addEventListener("DOMContentLoaded",loadAllTodosTodosToUI);
+    secondCardBody.addEventListener("click",deleteTodo);
+}
+function deleteTodo(e){
+    //console.log (e.target); 
+    if(e.target.className === "fa fa-remove"){
+        e.target.parentElement.parentElement.remove();
+        showAlert("success","Todo başarıyla silindi..");
+    }
 }
 function loadAllTodosTodosToUI(){
     let todos = getTodosFromStorage();
